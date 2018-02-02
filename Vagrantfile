@@ -3,7 +3,7 @@
 
 Vagrant.configure(2) do |config|
 
-  (1..3).each do |i|
+  (1..2).each do |i|
     config.vm.define "k8s#{i}" do |s|
       s.ssh.forward_agent = true
       s.vm.box = "ubuntu/xenial64"
@@ -19,7 +19,7 @@ Vagrant.configure(2) do |config|
                    virtualbox__intnet: "k8s-net"
       s.vm.provider "virtualbox" do |v|
         v.name = "k8s#{i}"
-        v.memory = 2048
+        v.memory = 4096
         v.gui = false
       end
       if i != 1
