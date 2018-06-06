@@ -1,6 +1,6 @@
-- hosts: localhost
-  remote_user: vagrant
+- hosts: k8s2
+  remote_user: ubuntu
   serial: 1
   roles:
-    - k8s-base
-    - k8s-worker
+#    - k8s-base
+#    - k8s-worker

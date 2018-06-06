@@ -1,0 +1,52 @@
+---
+- name: Install roles
+  become: yes
+  become_user: root
+  become_method: sudo
+  hosts: 
+    - all
+  vars_prompt:
+    - name: "sshUser"
+      prompt: "what is your ssh username?"
+  pre_tasks:
+    - name: Gathering facts
+      setup:
+  roles:
+    - role: helm
+      kubernetes_helm_ver: v2.9.1
+      kubernetes_helm_platform: linux-amd64
+      tags: helm,kubernetes
+    - role: kubectl
+      kubectl_ver : v1.10.3
+      tags: kubectl,kubernetes
+    - role: terraform
+      version: 0.11.3
+      tags: terraform
+    - role: java
+      when: "ansible_os_family == 'RedHat'"
+      java_packages:
+        - java-1.8.0-openjdk
+  tasks:
+    - name: Set bashrc file
+      copy:
+        src: files/bashrc
+        dest: /home/vagrant/.bashrc
+        owner: vagrant
+        group: vagrant
+        mode: 0544
+      tags: bashrc
+    - name: Set ssh config
+      template:
+        src: config.j2
+        dest: /home/vagrant/.ssh/config
+        owner: vagrant
+        group: vagrant
+        mode: 0644
+      tags: sshuser
+  environment:
+    http_proxy: "{{ lookup('env','http_proxy') }}"
+    HTTP_PROXY: "{{ lookup('env','HTTP_PROXY') }}"
+    https_proxy: "{{ lookup('env','https_proxy') }}"
+    HTTPS_PROXY: "{{ lookup('env','HTTPS_PROXY') }}"
+    NO_PROXY: "{{ lookup('env','NO_PROXY') }}"
+    no_proxy: "{{ lookup('env','no_proxy') }}"

@@ -1,0 +1,19 @@
+Host jumpserver
+  Hostname p-login01.yousee.idk
+  User {{ sshUser }}
+  IdentityFile /.ssh/id_rsa_dtc
+Host master xxxx.yousee.idk
+  Hostname xxx.yousee.idk	
+  User {{ sshUser }}
+  ProxyCommand ssh -W %h:%p jumpserver
+  IdentityFile /.ssh/id_rsa_dtc
+Host node1 xxxx.yousee.idk
+  Hostname xxxx.yousee.idk
+  User {{ sshUser }}
+  ProxyCommand ssh -W %h:%p jumpserver
+  IdentityFile /.ssh/id_rsa_dtc
+Host node2 xxxx.yousee.idk
+  Hostname xxxx.yousee.idk
+  User {{ sshUser }}
+  ProxyCommand ssh -W %h:%p jumpserver
+  IdentityFile /.ssh/id_rsa_dtc

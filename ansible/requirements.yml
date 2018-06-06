@@ -1,0 +1,6 @@
+---
+- src: https://github.com/mtbvang/ansible-role-docker-1
+  name: docker
+  version: '0.2.0'
+
+  
