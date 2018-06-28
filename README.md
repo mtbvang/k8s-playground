@@ -15,14 +15,15 @@ as installs Ubuntu application packages from the Internet.
 To bring up the cluster, clone this repository to a working directory.
 
 ```
-git clone http://github.com/davidkbainbridge/k8s-playground
+git clone https://github.com/mtbvang/vagrant-ubuntu-k8s
 ```
 
 Change into the working directory and `vagrant up`
 
 ```
-cd k8s-playground
+cd vagrant-ubuntu-k8s
 vagrant up
+vagrant hostmanager --provider virtualbox
 ```
 
 Vagrant will start three machines. Each machine will have a NAT-ed network
