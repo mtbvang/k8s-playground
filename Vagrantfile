@@ -25,7 +25,7 @@ Vagrant.configure(2) do |config|
         s.hostmanager.manage_host = true
         s.hostmanager.manage_guest = true
         #s.hostmanager.aliases = "k8s#{i}"
-        s.hostmanager.include_offline = true
+        #s.hostmanager.include_offline = true
       end
 
       s.vm.network "private_network", ip: "172.42.42.#{i+IP_BASE}", netmask: "255.255.255.0",
